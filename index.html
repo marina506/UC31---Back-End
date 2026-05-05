@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> {{title}} - Teste</title>
 </head>
-<body>
+<body style="background-color: rgb(237, 255, 255);">
     <h1 style="color: #63d4f4;">Olá, mundo!</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, distinctio ab fugiat molestiae omnis, possimus, expedita doloremque sed rerum maiores tempora quod! Soluta explicabo nihil ratione molestiae laboriosam doloremque facilis!</p>
-
+    <p style="color: #315f6c;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta, distinctio ab fugiat molestiae omnis, possimus, expedita doloremque sed rerum maiores tempora quod! Soluta explicabo nihil ratione molestiae laboriosam doloremque facilis!</p>
+    
+    <h1 style="color: #63d4f4 ;">Hello, {{ nome }}!</h1>
+    <h2>Nome: {{nome}}, Email: {{email}}</h2>
     <a href="{{url_for('contato')}}" style="color: rgb(99, 203, 234);">Página contato</a>
 </body>
 </html>
