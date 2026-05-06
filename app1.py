@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 @app.route('/contato')
 def contato():
@@ -14,27 +14,54 @@ def contato():
 
 @app.route('/usuario')
 def usuario():
-    usuario = {'Nome:', 'Marina', 'Email:', 'marinaoli@gmail.com'}
+    usuario = {'Nome': 'Marina', 'Email': 'marinaoli@gmail.com'}
     return render_template('index.html', title='Página Inicial', usuario=usuario)
 
-@app.route('/dados', defauls={"nome":"usuario comum"})
+@app.route('/dados', defaults={"nome": "usuario comum"})
 @app.route('/dados/<nome>')
 def dados(nome):
-    return f'Olá, {nome}!'
+    return render_template('saudacao.html', nome=nome)
 
 @app.route('/semestre/<int:x>')
 def semestre(x):
-    return 'Estamos no semestre' + str(x)
+    return 'Estamos no semestre ' + str(x)
 
 @app.route('/pagamento/<float:valor>')
 def pagamento(valor):
-    return 'Voce pagou:' + str(valor)
+    return 'Voce pagou: ' + str(valor)
 
-@app.route('/arearestrita/<id>')
-def arearestrita(id):
-    return 
+@app.route('/somar', defaults={"n1": 6, "n2": 3})
+@app.route('/somar/<int:n1>/<int:n2>')
+def somar(n1, n2):
+    resultado = n1 + n2
+    return render_template('somar.html', n1=n1, n2=n2, resultado=resultado)
+
+#Questão 1
+@app.route('/dados', defaults={"nome": "usuario comum"})
+@app.route('/dados/<nome>')
+def dados(nome):
+    return render_template('saudacao.html', nome=nome)
+
+#Questão 2
+@app.route('/calculo/<int:n1>/<int:n2>')
+def somar(n1, n2):
+    resultado = n1 + n2
+    return render_template('soma.html', resultado=resultado, n1=n1, n2=n2)
+
+#Questão 3
+@app.route('/idade/<nome>/<int:idade> ')
+def verificar_idade(nome, idade):
+    if idade >= 18:
+        mensagem = f"{nome} é maior de idade"
+    else:
+        mensagem = f"{nome} é menor de idade"
     
+    return render_template('idade.html', mensagem=mensagem)
 
+#Questão 4
+@app.route('/produto/<nome>/<float:preco>')
+def produto(nome, preco):
+    return render_template('produto.html', nome=nome, preco=preco)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
